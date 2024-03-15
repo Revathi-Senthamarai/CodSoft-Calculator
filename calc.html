@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("D:\\CodeSoft\\1.webp");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .calculator {
+            width: 240px;
+            border: 1px solid #fdfcfc;
+            padding: 10px;
+            border-radius: 5px;
+            background-image: url("D:\\CodeSoft\\download.jpg");
+            box-shadow: 0 0 10px rgb(250, 249, 249);
+            background-color: rgb(255, 255, 255);
+        }
+        input[type="button"] {
+            width: 50px;
+            height: 50px;
+            font-size: 18px;
+            margin: 5px;
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="text"] {
+            width: 100%;
+            height: 40px;
+            font-size: 18px;
+            margin-bottom: 10px;
+            text-align: right;
+        }
+        .row {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="result" disabled>
+        <div class="row">
+            <input type="button" value="7" onclick="addToScreen('7')">
+            <input type="button" value="8" onclick="addToScreen('8')">
+            <input type="button" value="9" onclick="addToScreen('9')">
+            <input type="button" value="/" onclick="addToScreen('/')">
+        </div>
+        <div class="row">
+            <input type="button" value="4" onclick="addToScreen('4')">
+            <input type="button" value="5" onclick="addToScreen('5')">
+            <input type="button" value="6" onclick="addToScreen('6')">
+            <input type="button" value="*" onclick="addToScreen('*')">
+        </div>
+        <div class="row">
+            <input type="button" value="1" onclick="addToScreen('1')">
+            <input type="button" value="2" onclick="addToScreen('2')">
+            <input type="button" value="3" onclick="addToScreen('3')">
+            <input type="button" value="-" onclick="addToScreen('-')">
+        </div>
+        <div class="row">
+            <input type="button" value="0" onclick="addToScreen('0')">
+            <input type="button" value="." onclick="addToScreen('.')">
+            <input type="button" value="=" onclick="calculate()">
+            <input type="button" value="+" onclick="addToScreen('+')">
+        </div>
+        <div class="row">
+            <input type="button" value="C" onclick="clearScreen()">
+        </div>
+    </div>
+
+    <script>
+        function addToScreen(value) {
+            document.getElementById('result').value += value;
+        }
+
+        function calculate() {
+            try {
+                var expression = document.getElementById('result').value;
+                if(expression === '') {
+                    throw 'Expression is empty';
+                }
+                var result = eval(expression);
+                if (isNaN(result) || !isFinite(result)) {
+                    throw 'Invalid expression';
+                }
+                document.getElementById('result').value = result;
+            } catch (error) {
+                alert('Error: ' + error);
+            }
+        }
+
+        function clearScreen() {
+            document.getElementById('result').value = '';
+        }
+    </script>
+</body>
+</html>
